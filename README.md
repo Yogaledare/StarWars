@@ -27,7 +27,7 @@ function getApi(){
 	{ 
 		\*Och här\*
 	}) 
-	.catch(err => console.log(err)) 
+		.catch(err => console.log(err)) 
 
 } 
 ```
