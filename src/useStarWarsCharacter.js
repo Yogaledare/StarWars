@@ -16,8 +16,8 @@ const useStarWarsCharacter = () => {
             const response = await axios.get(`https://www.swapi.tech/api/people/?name=${name}`);
             
             if (response.data && response.data.result.length > 0) {
-                const {height, mass, gender, hair_color} = response.data.result[0].properties; 
-                const formattedBiometrics = `Height: ${height} cm, Mass: ${mass} kg, Gender: ${gender}, Hair Color: ${hair_color}`;
+                const {name, height, mass, gender, hair_color} = response.data.result[0].properties; 
+                const formattedBiometrics = `Name: ${name}, Height: ${height} cm, Mass: ${mass} kg, Gender: ${gender}, Hair Color: ${hair_color}`;
                 setBiometrics(formattedBiometrics)
             } else {
                 setBiometrics('No results found.'); 
