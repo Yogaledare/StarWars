@@ -1,13 +1,14 @@
 ﻿import {useState} from "react";
 
 
-const SearchForm = ({addTodo: setBiometrics}) => {
+const SearchForm = ({fetchCharacterData}) => {
+    
     const [text, setText] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!text.trim()) return;
-        setBiometrics(text);
+        fetchCharacterData(text);
         setText('');
     }
 

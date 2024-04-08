@@ -1,45 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import {useState} from "react";
-import axios from 'axios';
-import SearchForm from "./SearchForm"; 
+import SearchForm from "./SearchForm";
+import useStarWarsCharacter from "./useStarWarsCharacter";
+import BiometricsDisplay from "./BiometricsDisplay";
 
 function App() {
-    
-    
-    
-    const [characterName, setCharacterName] = useState(''); 
-    const [biometrics, setBiometrics] = useState(''); 
-    const [error, setError] = useState('');
-    const [loading, setLoading] =  useState(false); 
-    
 
-    
-    const fetchCharacterData = async (name) => {
-        setLoading(true); 
-        setError(''); 
-        
-        try {
-            const response = await axios.get(`https://www.swapi.tech/api/people/?name=${name}`)
-
-            console.log(response); 
-            
-            
-            
-        } catch (err) {
-            setError('Failed to fetch data. Please check the character name and try again.');
-            setBiometrics('');
-        } finally {
-            setLoading(false); 
-        }
-        
-        
-        
-        
-        
-        
-    }
-    
+    const {fetchCharacterData, biometrics, error, loading} = useStarWarsCharacter();
 
     return (
         <div className='container mt-5'>
@@ -50,8 +16,14 @@ function App() {
                     </header>
 
                     <SearchForm
-                        setBiometrics={console.log("hi")}
+                        fetchCharacterData={fetchCharacterData}
                     ></SearchForm>
+                    <BiometricsDisplay
+                        biometrics={biometrics}
+                        error={error}
+                        loading={loading}
+                    >
+                    </BiometricsDisplay>
                 </div>
             </div>
 
@@ -60,25 +32,4 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-{/*<input */}
-{/*    type="text"*/}
-{/*    value={characterName}*/}
-{/*    onChange={(e) => setCharacterName(e.target.value)}*/}
-{/*    placeholder={'Enter Name'}*/}
-{/*/>*/}
-
-
-{/*<AddTodoForm*/}
-{/*    addTodo={addTodo}*/}
-{/*></AddTodoForm>*/}
-{/*<TodoList todos={todos} toggleComplete={toggleComplete} removeItem={removeItem}></TodoList>*/}
-{/*<ControlPanel*/}
-{/*    undoTodo={undoTodo}*/}
-{/*    removeAll={removeAll}*/}
-{/*></ControlPanel>*/}
 
